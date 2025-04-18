@@ -11,6 +11,7 @@ app = Flask(__name__)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 PHONE_NUMBER_ID = os.environ.get('PHONE_NUMBER_ID')
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+cookiesfile = os.environ.get('cookiesfile')
 processed_message_ids = set()
 
 numbers = set()
@@ -67,6 +68,7 @@ def audio(url,name):
         }],
         'prefer_ffmpeg':True,
         'quiet': False,
+        "cookiefile": cookiesfile,
     }
     with yt_dlp.YoutubeDL(ydl_opt) as ydl:
         ydl.download([url])
