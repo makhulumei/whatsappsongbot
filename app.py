@@ -67,7 +67,7 @@ def audio(url,name):
             'preferredquality':'128',
         }],
         'prefer_ffmpeg':True,
-        'quiet': False,
+        'quiet': True,
         "cookiefile": YTDL_COOKIE_PATH,
     }
     with yt_dlp.YoutubeDL(ydl_opt) as ydl:
