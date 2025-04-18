@@ -1,0 +1,5 @@
+gunicorn
+Flask
+yt-dlp
+ytmusicapi
+requests
