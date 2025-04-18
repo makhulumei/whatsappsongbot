@@ -59,17 +59,27 @@ def audio(url,name):
     temp_dir = tempfile.gettempdir()
     file_path = os.path.join(temp_dir,temp_name)
     ydl_opt = {
-        'format':'bestaudio/best',
-        'outtmpl': file_path,
-        'postprocessors':[{
-            'key':'FFmpegExtractAudio',
-            'preferredcodec':'mp3',
-            'preferredquality':'128',
-        }],
-        'prefer_ffmpeg':True,
-        'quiet': False,
-        "cookiefile": cookiesfile,
+    'cookiefile': '/etc/secrets/youtube.com_cookies.txt',  # or wherever your cookie file is
+    'nocheckcertificate': True,
+    'quiet': True,
+    'format': 'bestaudio/best',
+    'outtmpl': file_path,
+    'noplaylist': True,
+    'cookiefile': '/etc/secrets/youtube.com_cookies.txt',
+    'cachedir': False,  # prevents writing cache
+    'writethumbnail': False,
+    'writedescription': False,
+    'writesubtitles': False,
+    'usenetrc': False,
+    'noprogress': True,
+    'nooverwrites': True,
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
     }
+
     with yt_dlp.YoutubeDL(ydl_opt) as ydl:
         ydl.download([url])
         filename = f"{file_path}.mp3"
