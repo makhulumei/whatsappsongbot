@@ -137,9 +137,9 @@ def receive_message():
                             numbers.add(sender)
                             send_message(sender,welcome)
                             return 'ok',200
-
                         text = message.get('text',{}).get('body')
                         mem_path,song_name = get_song(text)
+                        send_message(sender,'Downloading Please wait...')
                         send_song(sender,mem_path,song_name)
     return 'Message received',200
 
